@@ -1,20 +1,31 @@
-import dotenv from "dotenv";
-dotenv.config();
-import express, { Request, Response } from "express";
+import { config } from "dotenv";
+config();
+import express from "express";
 import weatherRouter from "./api/weather.routes";
-import { config } from "./config/env";
 
+config();
 const app = express();
+const PORT = process.env.PORT || 3001;
+
 app.use(express.json());
 
-app.use("/api/weather", weatherRouter);
+app.use("/api", weatherRouter);
 
-app.get("/ping", (_req: Request, res: Response) => {
-  res.send("pong");
+app.use(
+  (
+    err: Error,
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) => {
+    console.error(err.stack);
+    res.status(500).json({ error: "Internal server error" });
+  }
+);
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });
 
-app.listen(config.port, () => {
-  console.log(`Server running on http://localhost:${config.port}`);
-});
-
-console.log("API testKey:", process.env.OPENWEATHER_API_KEY);
+console.log("API testKey:", process.env.WEATHERBIT_API_KEY);
+console.log("RAPIDAPI_KEY:", process.env.RAPIDAPI_KEY);
