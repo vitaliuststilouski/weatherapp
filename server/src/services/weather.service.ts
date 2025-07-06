@@ -1,35 +1,78 @@
-interface WeatherResponse {
-  temp: number;
-  description: string;
-  city: string;
-}
+import * as https from "https";
+import { URLSearchParams } from "url";
+import type { WeatherResponse } from "../types/geo";
 
-export const fetchWeather = async (city: string): Promise<WeatherResponse> => {
-  try {
-    const apiKey = process.env.WEATHERBIT_API_KEY;
-    const apiUrl = `https://api.weatherbit.io/v2.0/current?city=${encodeURIComponent(
+export class WeatherService {
+  static async searchCities(query: string): Promise<any[]> {
+    return new Promise((resolve, reject) => {
+      if (!query || query.length < 3) {
+        reject(new Error("Minimum 3 characters required"));
+        return;
+      }
+
+      const params = new URLSearchParams({ namePrefix: query, limit: "5" });
+      const options = {
+        hostname: "wft-geo-db.p.rapidapi.com",
+        path: `/v1/geo/cities?${params.toString()}`,
+        method: "GET",
+        headers: {
+          "x-rapidapi-key": process.env.RAPIDAPI_KEY || "your-default-key-here",
+          "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+        },
+      };
+
+      const req = https.request(options, (res) => {
+        let data = "";
+        res.on("data", (chunk) => (data += chunk));
+        res.on("end", () => {
+          try {
+            const parsed = JSON.parse(data);
+            resolve(parsed.data || []);
+          } catch (error) {
+            reject(new Error("Failed to parse API response"));
+          }
+        });
+      });
+
+      req.on("error", reject);
+      req.end();
+    });
+  }
+
+  static async fetchWeather(city: string): Promise<WeatherResponse> {
+    const url = `https://api.weatherbit.io/v2.0/current?city=${encodeURIComponent(
       city
-    )}&key=${apiKey}`;
+    )}&key=${process.env.WEATHERBIT_API_KEY}`;
+    const response = await fetch(url);
 
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data?.error || "Weather API error");
-    }
-
-    if (!data.data || data.data.length === 0) {
-      throw new Error("No weather data found");
-    }
-
-    const weather = data.data[0];
+    if (!response.ok) throw new Error("Weatherbit API error");
+    const { data } = await response.json();
+    if (!data?.length) throw new Error("No weather data found");
 
     return {
-      temp: weather.temp,
-      description: weather.weather.description,
-      city: weather.city_name,
+      temp: data[0].temp,
+      humidity: data[0].rh,
+      description: data[0].weather.description,
+      city: data[0].city_name,
     };
-  } catch (error: any) {
-    throw new Error(`Failed to fetch weather: ${error.message}`);
   }
-};
+
+  static async fetchWeatherByCoords(
+    lat: number,
+    lon: number
+  ): Promise<WeatherResponse> {
+    const url = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${process.env.WEATHERBIT_API_KEY}`;
+    const response = await fetch(url);
+
+    if (!response.ok) throw new Error("Weatherbit API error");
+    const { data } = await response.json();
+    if (!data?.length) throw new Error("No weather data found");
+
+    return {
+      temp: data[0].temp,
+      humidity: data[0].rh,
+      description: data[0].weather.description,
+      city: data[0].city_name,
+    };
+  }
+}
