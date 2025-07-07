@@ -10,13 +10,13 @@ const PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://weatherapp-1-ou57.onrender.com"],
+    origin: ["http://localhost:5173", "https://weatherapp-1-f718.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
-app.use(express.json());
 
+app.use(express.json());
 app.use("/api", weatherRouter);
 
 app.use(
@@ -32,5 +32,5 @@ app.use(
 );
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
