@@ -76,26 +76,27 @@ A modern weather application providing real-time weather data with city search a
 
    # Install client dependencies
    cd client && npm install
-```
-## Running the App ⚡
-```
 
-**Option 1: Run both frontend and backend together but**
+## Running the App ⚡
+
+**Option 1: Run both frontend and backend together**
 
 ```bash
-npm install
-npm run dev
+npm install // in client and server folder
+npm run dev // in client and server folder
+```
 
 **Option 2: Run separately**
-
+```bash
 # Backend (port 3001)
 npm run dev
 
 # Frontend (port 5173)
 cd client && npm run dev
+```
 
 **Option 2: Run separately**
-
+```bash
 # Backend (port 3001)
 npm run dev
 
