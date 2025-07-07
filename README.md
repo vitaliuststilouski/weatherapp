@@ -85,7 +85,6 @@ A modern weather application providing real-time weather data with city search a
 ```bash
 npm install
 npm run dev
-```
 
 **Option 2: Run separately**
 
@@ -108,4 +107,4 @@ npm run test:watch
 
 // if issues with testing please instal onne again in client
 npm install --save-dev @testing-library/jest-dom @testing-library/react @testing-library/user-event @types/jest
-
+```
