@@ -2,7 +2,7 @@
   "compilerOptions": {
     "lib": ["ES2022", "DOM"],
     "module": "CommonJS",
-    "outDir": "./dist",
+    "outDir": "./src",
     "esModuleInterop": true
   }
 }
