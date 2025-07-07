@@ -1,0 +1,14 @@
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  padding: 8px;
+  background-color: rgba(203, 215, 215, 0.15);
+  border-radius: 8px;
+}
+
+.detailItem svg {
+  font-size: 1.5rem;
+}
