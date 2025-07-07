@@ -5,12 +5,15 @@
       "@/*": ["src/*"]
     },
     "target": "ES2015",
-    "lib": ["DOM", "ESNext"],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "moduleResolution": "node",
     "jsx": "react-jsx",
     "module": "ESNext",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "types": ["vite/client"],
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
