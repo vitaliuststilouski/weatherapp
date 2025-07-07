@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
+    "target": "ES2015",
+    "lib": ["DOM", "ESNext"],
+    "moduleResolution": "node",
     "jsx": "react-jsx",
-    "baseUrl": "src",
+    "module": "ESNext",
+    "strict": true,
     "esModuleInterop": true,
-    "types": ["jest", "@testing-library/jest-dom"],
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "skipLibCheck": true
   }
 }
+
