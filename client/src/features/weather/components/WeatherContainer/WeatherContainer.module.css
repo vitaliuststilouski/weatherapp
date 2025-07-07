@@ -1,0 +1,9 @@
+.container {
+  position: relative;
+  width: 500px;
+  max-width: 90vw;
+}
+
+.weather-display {
+  margin-top: 20px;
+}
