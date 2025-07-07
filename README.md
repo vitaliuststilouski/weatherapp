@@ -78,13 +78,14 @@ A modern weather application providing real-time weather data with city search a
    cd client && npm install
 ```
 ## Running the App ⚡
-
+```
 
 **Option 1: Run both frontend and backend together but**
 
 ```bash
 npm install
 npm run dev
+```
 
 **Option 2: Run separately**
 
@@ -104,5 +105,7 @@ cd client && npm run dev
 
 **Testing **
 npm run test:watch
+
+// if issues with testing please instal onne again in client
 npm install --save-dev @testing-library/jest-dom @testing-library/react @testing-library/user-event @types/jest
 
