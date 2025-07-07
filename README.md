@@ -4,8 +4,13 @@ A modern weather application providing real-time weather data with city search a
 
 deploy version:  https://weatherapp-1-f718.onrender.com/
 
+**Change color based on weather**
+
+ **Cloudy** <br/>
 ![pic1_optimized](https://github.com/user-attachments/assets/2ed0b155-ef97-41d1-b3ea-209b7c0f3438)
-![11photo_2025-07-07_16-48-36](https://github.com/user-attachments/assets/af37268c-cb94-4fde-a62a-4bd651432f86)
+
+**Sunny**<br/>
+ ![11photo_2025-07-07_16-48-36](https://github.com/user-attachments/assets/af37268c-cb94-4fde-a62a-4bd651432f86)
 
 
 
