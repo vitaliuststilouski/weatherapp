@@ -28,7 +28,7 @@ deploy version:  https://weatherapp-1-f718.onrender.com/
 
 - React + Vite
 - TypeScript
-- Tailwind CSS (or your CSS framework)
+- CSS Modules
 
 **Backend**:
 
