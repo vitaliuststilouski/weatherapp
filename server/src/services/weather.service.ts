@@ -1,8 +1,73 @@
 import * as https from "https";
 import { URLSearchParams } from "url";
-import type { WeatherResponse } from "../types/geo";
+
+interface WeatherbitResponse {
+  data: {
+    temp: number;
+    app_temp: number;
+    rh: number;
+    wind_spd: number;
+    wind_cdir_full: string;
+    pres: number;
+    sunrise: string;
+    sunset: string;
+    uv: number;
+    ob_time: string;
+    city_name: string;
+    country_code: string;
+    weather: {
+      code: number;
+      description: string;
+      icon: string;
+    };
+  }[];
+}
+
+export interface WeatherResponse {
+  city_name: string;
+  country_code: string;
+  temp: number;
+  app_temp: number;
+  rh: number;
+  wind_spd: number;
+  wind_cdir_full: string;
+  pres: number;
+  sunrise: string;
+  sunset: string;
+  uv: number;
+  ob_time: string;
+  weather: {
+    code: number;
+    description: string;
+    icon: string;
+  };
+}
 
 export class WeatherService {
+  private static makeHttpsRequest(url: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      https
+        .get(url, (res) => {
+          let data = "";
+
+          res.on("data", (chunk) => {
+            data += chunk;
+          });
+
+          res.on("end", () => {
+            try {
+              resolve(JSON.parse(data));
+            } catch (error) {
+              reject(new Error("Failed to parse API response"));
+            }
+          });
+        })
+        .on("error", (error) => {
+          reject(new Error(`API request failed: ${error.message}`));
+        });
+    });
+  }
+
   static async searchCities(query: string): Promise<any[]> {
     return new Promise((resolve, reject) => {
       if (!query || query.length < 3) {
@@ -10,7 +75,7 @@ export class WeatherService {
         return;
       }
 
-      const params = new URLSearchParams({ namePrefix: query, limit: "5" });
+      const params = new URLSearchParams({ namePrefix: query, limit: "10" });
       const options = {
         hostname: "wft-geo-db.p.rapidapi.com",
         path: `/v1/geo/cities?${params.toString()}`,
@@ -42,37 +107,83 @@ export class WeatherService {
   static async fetchWeather(city: string): Promise<WeatherResponse> {
     const url = `https://api.weatherbit.io/v2.0/current?city=${encodeURIComponent(
       city
-    )}&key=${process.env.WEATHERBIT_API_KEY}`;
-    const response = await fetch(url);
+    )}&key=${process.env.WEATHERBIT_API_KEY}&include=minutely`;
 
-    if (!response.ok) throw new Error("Weatherbit API error");
-    const { data } = await response.json();
-    if (!data?.length) throw new Error("No weather data found");
+    try {
+      const response = await this.makeHttpsRequest(url);
+      const { data } = response as WeatherbitResponse;
 
-    return {
-      temp: data[0].temp,
-      humidity: data[0].rh,
-      description: data[0].weather.description,
-      city: data[0].city_name,
-    };
+      if (!data?.length) {
+        throw new Error("No weather data found");
+      }
+
+      return {
+        city_name: data[0].city_name,
+        country_code: data[0].country_code,
+        temp: data[0].temp,
+        app_temp: data[0].app_temp,
+        rh: data[0].rh,
+        wind_spd: data[0].wind_spd,
+        wind_cdir_full: data[0].wind_cdir_full,
+        pres: data[0].pres,
+        sunrise: data[0].sunrise,
+        sunset: data[0].sunset,
+        uv: data[0].uv,
+        ob_time: data[0].ob_time,
+        weather: {
+          code: data[0].weather.code,
+          description: data[0].weather.description,
+          icon: data[0].weather.icon,
+        },
+      };
+    } catch (error) {
+      throw new Error(
+        `Weatherbit API error: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`
+      );
+    }
   }
 
   static async fetchWeatherByCoords(
     lat: number,
     lon: number
   ): Promise<WeatherResponse> {
-    const url = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${process.env.WEATHERBIT_API_KEY}`;
-    const response = await fetch(url);
+    const url = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&key=${process.env.WEATHERBIT_API_KEY}&include=minutely`;
 
-    if (!response.ok) throw new Error("Weatherbit API error");
-    const { data } = await response.json();
-    if (!data?.length) throw new Error("No weather data found");
+    try {
+      const response = await this.makeHttpsRequest(url);
+      const { data } = response as WeatherbitResponse;
 
-    return {
-      temp: data[0].temp,
-      humidity: data[0].rh,
-      description: data[0].weather.description,
-      city: data[0].city_name,
-    };
+      if (!data?.length) {
+        throw new Error("No weather data found");
+      }
+
+      return {
+        city_name: data[0].city_name,
+        country_code: data[0].country_code,
+        temp: data[0].temp,
+        app_temp: data[0].app_temp,
+        rh: data[0].rh,
+        wind_spd: data[0].wind_spd,
+        wind_cdir_full: data[0].wind_cdir_full,
+        pres: data[0].pres,
+        sunrise: data[0].sunrise,
+        sunset: data[0].sunset,
+        uv: data[0].uv,
+        ob_time: data[0].ob_time,
+        weather: {
+          code: data[0].weather.code,
+          description: data[0].weather.description,
+          icon: data[0].weather.icon,
+        },
+      };
+    } catch (error) {
+      throw new Error(
+        `Weatherbit API error: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`
+      );
+    }
   }
 }
