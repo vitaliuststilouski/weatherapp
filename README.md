@@ -76,9 +76,9 @@ A modern weather application providing real-time weather data with city search a
 
    # Install client dependencies
    cd client && npm install
+```
+## Running the App ⚡
 
-   ## Running the App ⚡
-   ```
 
 **Option 1: Run both frontend and backend together but**
 
