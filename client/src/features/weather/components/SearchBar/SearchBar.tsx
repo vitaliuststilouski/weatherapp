@@ -3,7 +3,7 @@ import { useAppDispatch } from "@/store/hooks";
 import { setCity, setCoordinates } from "../../../../store/weatherSlice";
 import { useGetCitySuggestionsQuery } from "@/services/weatherApi";
 import { useDebouncedValue } from "@/common/hooks/useDebouncedValue";
-import { SuggestionsDropdown } from "../SuggestionsDropdown/SuggestionsDropdown";
+import { DropdownList } from "../DropdownList/DropdownList";
 
 import styles from "./SearchBar.module.css";
 
@@ -99,7 +99,7 @@ export const SearchBar = () => {
       {showSuggestions &&
         !isCoordinates(input) &&
         debouncedInput.length >= 3 && (
-          <SuggestionsDropdown
+          <DropdownList
             suggestions={suggestions}
             isLoading={isFetching}
             onSelect={handleSelect}
