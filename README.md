@@ -68,7 +68,7 @@ deploy version:  https://weatherapp-1-f718.onrender.com/
    ```
 
 2. **Configure environment**  
-   Create a `.env` file in the root directory:
+   Create a `.env` file in the server directory:
 
    ```env
    WEATHERBIT_API_KEY=45d426a93cd14a85a7b986f02296d36e
