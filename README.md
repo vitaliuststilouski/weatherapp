@@ -62,9 +62,8 @@ deploy version:  https://weatherapp-1-f718.onrender.com/
 1. **Clone repository**
 
    ```bash
-   git clone https://github.com/your-repo/weatherapp.git
-   cd weatherapp
-
+   git clone git@github.com:vitaliuststilouski/weatherapp.git // SSH
+   https://github.com/vitaliuststilouski/weatherapp.git // HTTPS
    ```
 
 2. **Configure environment**  
