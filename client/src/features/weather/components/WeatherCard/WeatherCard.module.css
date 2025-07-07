@@ -1,0 +1,125 @@
+.card {
+  border-radius: 16px;
+  padding: 24px;
+  color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  margin: 20px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #72edf2 0%, #5151e5 100%);
+}
+
+.card.clear {
+  background: linear-gradient(135deg, #ffd452 0%, #ff7b00 100%);
+}
+
+.card.cloudy {
+  background: linear-gradient(135deg, #1e90ff, #4490aa)
+}
+
+.card.rain {
+  background: linear-gradient(135deg, #6b6b83 0%, #3a3a52 100%);
+}
+
+.card.thunderstorm {
+  background: linear-gradient(135deg, #4a4a6d 0%, #1a1a2e 100%);
+}
+
+.card.snow {
+  background: linear-gradient(135deg, #e6f0f2 0%, #b1c4c9 100%);
+  color: #333;
+}
+
+.card.fog {
+  background: linear-gradient(135deg, #d3d3d3 0%, #a8a8a8 100%);
+  color: #333;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.city {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.date {
+  margin: 4px 0 0 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.currentTemp {
+  display: flex;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.weatherDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.condition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.conditionText {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.feelsLike {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.noData {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  color: #666;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .city {
+    font-size: 1.2rem;
+  }
+
+  .currentTemp {
+    font-size: 2rem;
+  }
+
+  .weatherIcon {
+    font-size: 2.5rem;
+  }
+
+  .detailGrid {
+    grid-template-columns: 1fr;
+  }
+}
