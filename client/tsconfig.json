@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "target": "ES2015",
     "lib": ["DOM", "ESNext"],
     "moduleResolution": "node",
@@ -10,4 +14,3 @@
     "skipLibCheck": true
   }
 }
-
