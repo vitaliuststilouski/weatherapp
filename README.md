@@ -2,6 +2,8 @@
 
 A modern weather application providing real-time weather data with city search and geolocation features.
 
+deploy version:  https://weatherapp-1-f718.onrender.com/
+
 ![pic1_optimized](https://github.com/user-attachments/assets/2ed0b155-ef97-41d1-b3ea-209b7c0f3438)
 ![11photo_2025-07-07_16-48-36_50](https://github.com/user-attachments/assets/41122292-4e39-4bc9-8ae5-5bb71f6a7c85)
 
