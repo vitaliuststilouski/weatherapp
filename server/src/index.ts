@@ -10,13 +10,15 @@ const PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
     credentials: true,
   })
 );
 app.use(express.json());
 
-app.use("/api", weatherRouter);
+app.get("/", (req, res) => {
+  res.send("Weather backend is up and running!");
+});
 
 app.use(
   (
