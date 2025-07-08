@@ -52,11 +52,6 @@ deploy version:  https://weatherapp-1-f718.onrender.com/
 
 ### Prerequisites
 
-- Node.js v16+
-- API Keys:
-  - Weatherbit API Key
-  - RapidAPI Key
-
 ### Setup
 
 1. **Clone repository**
