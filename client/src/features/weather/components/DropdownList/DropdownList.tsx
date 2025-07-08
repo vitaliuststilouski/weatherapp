@@ -1,4 +1,4 @@
-import { IDropdownListProps } from './IDropdownListProps';
+import { IDropdownListProps } from "./IDropdownListProps";
 import styles from "./DropdownList.module.css";
 
 export const DropdownList = ({
@@ -20,6 +20,8 @@ export const DropdownList = ({
     );
   };
 
+  console.log("suggestions", suggestions);
+
   return (
     <ul className={styles.suggestions}>
       {isLoading && <li className={styles.loading}>Loading...</li>}
@@ -28,9 +30,9 @@ export const DropdownList = ({
           No cities found for "{searchQuery}"
         </li>
       ) : (
-        suggestions.map(({ name, country }, index) => (
+        suggestions.map(({ name, country }, id) => (
           <li
-            key={`${name}-${country}-${index}`}
+            key={id}
             className={styles.suggestionItem}
             onMouseDown={() => onSelect(name)}
           >
