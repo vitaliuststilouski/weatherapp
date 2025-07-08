@@ -12,6 +12,8 @@ deploy version:  https://weatherapp-1-f718.onrender.com/
 **Sunny**<br/>
  ![11photo_2025-07-07_16-48-36](https://github.com/user-attachments/assets/af37268c-cb94-4fde-a62a-4bd651432f86)
 
+**Autocomplete first 10 cities(API limit)**<br/>
+![autocomplet (2)](https://github.com/user-attachments/assets/3d698bc0-af96-4ff6-87f1-d6690bd0e43d)
 
 
 
