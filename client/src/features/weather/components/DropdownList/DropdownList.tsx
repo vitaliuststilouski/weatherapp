@@ -20,8 +20,6 @@ export const DropdownList = ({
     );
   };
 
-  console.log("suggestions", suggestions);
-
   return (
     <ul className={styles.suggestions}>
       {isLoading && <li className={styles.loading}>Loading...</li>}
