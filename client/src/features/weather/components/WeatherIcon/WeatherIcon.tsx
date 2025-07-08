@@ -9,18 +9,32 @@ import {
 import styles from "./WeatherIcon.module.css";
 import { IWeatherIconProps } from "./WeatherIconProps";
 
+const WEATHER_ICONS = {
+  THUNDERSTORM: WiThunderstorm,
+  RAIN: WiRain,
+  SNOW: WiSnow,
+  FOG: WiFog,
+  CLEAR: WiDaySunny,
+  CLOUDS: WiCloudy,
+};
+
+const getIconComponent = (code: number) => {
+  if (code >= 200 && code < 300) return WEATHER_ICONS.THUNDERSTORM;
+  if (code >= 300 && code < 600) return WEATHER_ICONS.RAIN;
+  if (code >= 600 && code < 700) return WEATHER_ICONS.SNOW;
+  if (code >= 700 && code < 800) return WEATHER_ICONS.FOG;
+  if (code === 800) return WEATHER_ICONS.CLEAR;
+  if (code > 800 && code < 900) return WEATHER_ICONS.CLOUDS;
+  return WEATHER_ICONS.CLEAR;
+};
+
 export const WeatherIcon = ({ code, className = "" }: IWeatherIconProps) => {
-  if (code >= 200 && code < 300)
-    return <WiThunderstorm className={`${styles.weatherIcon} ${className}`} />;
-  if (code >= 300 && code < 600)
-    return <WiRain className={`${styles.weatherIcon} ${className}`} />;
-  if (code >= 600 && code < 700)
-    return <WiSnow className={`${styles.weatherIcon} ${className}`} />;
-  if (code >= 700 && code < 800)
-    return <WiFog className={`${styles.weatherIcon} ${className}`} />;
-  if (code === 800)
-    return <WiDaySunny className={`${styles.weatherIcon} ${className}`} />;
-  if (code > 800 && code < 900)
-    return <WiCloudy className={`${styles.weatherIcon} ${className}`} />;
-  return <WiDaySunny className={`${styles.weatherIcon} ${className}`} />;
+  const IconComponent = getIconComponent(code);
+
+  return (
+    <IconComponent
+      className={`${styles.weatherIcon} ${className}`}
+      data-testid={`weather-icon-${code}`}
+    />
+  );
 };
