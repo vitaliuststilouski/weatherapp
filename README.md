@@ -2,8 +2,18 @@
 
 A modern weather application providing real-time weather data with city search and geolocation features.
 
-![Weather App Screenshot](https://via.placeholder.com/800x400?text=Weather+App+Preview)  
-_(Consider adding a real screenshot later)_
+deploy version:  https://weatherapp-1-f718.onrender.com/
+
+**Change color based on weather**
+
+ **Cloudy** <br/>
+![pic1_optimized](https://github.com/user-attachments/assets/2ed0b155-ef97-41d1-b3ea-209b7c0f3438)
+
+**Sunny**<br/>
+ ![11photo_2025-07-07_16-48-36](https://github.com/user-attachments/assets/af37268c-cb94-4fde-a62a-4bd651432f86)
+
+
+
 
 ## Features ✨
 
@@ -16,14 +26,14 @@ _(Consider adding a real screenshot later)_
 
 **Frontend**:
 
-- React + Vite
+- React + Redux + Vite
 - TypeScript
-- Tailwind CSS (or your CSS framework)
+- CSS Modules
 
 **Backend**:
 
 - Node.js + Express
-- Axios for API calls
+- API calls
 
 **APIs**:
 
@@ -42,23 +52,17 @@ _(Consider adding a real screenshot later)_
 
 ### Prerequisites
 
-- Node.js v16+
-- API Keys:
-  - Weatherbit API Key
-  - RapidAPI Key
-
 ### Setup
 
 1. **Clone repository**
 
    ```bash
-   git clone https://github.com/your-repo/weatherapp.git
-   cd weatherapp
-
+   git clone git@github.com:vitaliuststilouski/weatherapp.git // SSH
+   https://github.com/vitaliuststilouski/weatherapp.git // HTTPS
    ```
 
 2. **Configure environment**  
-   Create a `.env` file in the root directory:
+   Create a `.env` file in the server directory:
 
    ```env
    WEATHERBIT_API_KEY=45d426a93cd14a85a7b986f02296d36e
@@ -75,25 +79,26 @@ _(Consider adding a real screenshot later)_
    # Install client dependencies
    cd client && npm install
 
-   ## Running the App ⚡
-   ```
+## Running the App ⚡
 
-**Option 1: Run both frontend and backend together but**
+**Option 1: Run both frontend and backend together**
 
 ```bash
-npm install
-npm run dev
+npm install // in client and server folder
+npm run dev // in client and server folder
+```
 
 **Option 2: Run separately**
-
+```bash
 # Backend (port 3001)
 npm run dev
 
 # Frontend (port 5173)
 cd client && npm run dev
+```
 
 **Option 2: Run separately**
-
+```bash
 # Backend (port 3001)
 npm run dev
 
@@ -102,6 +107,7 @@ cd client && npm run dev
 
 **Testing **
 npm run test:watch
-npm install --save-dev @testing-library/jest-dom @testing-library/react @testing-library/user-event @types/jest
 
+// if issues with testing please instal onne again in client
+npm install --save-dev @testing-library/jest-dom @testing-library/react @testing-library/user-event @types/jest
 ```
