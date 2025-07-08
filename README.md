@@ -26,14 +26,14 @@ deploy version:  https://weatherapp-1-f718.onrender.com/
 
 **Frontend**:
 
-- React + Vite
+- React + Redux + Vite
 - TypeScript
 - CSS Modules
 
 **Backend**:
 
 - Node.js + Express
-- Axios for API calls
+- API calls
 
 **APIs**:
 
